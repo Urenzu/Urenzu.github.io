@@ -1,0 +1,31 @@
+---
+layout: default
+---
+<div class="container mt-4">
+  <header class="text-center">
+    <h1>{{ page.title }}</h1>
+    {% if page.description %}
+      <p class="lead">{{ page.description }}</p>
+    {% endif %}
+  </header>
+
+  <section class="publications">
+    {% for publication in site.data.publications %}
+      <div class="publication card my-3 p-3">
+        <h3 class="publication-title">{{ publication.title }}</h3>
+        <p class="publication-authors">{{ publication.authors | join: ', ' }}</p>
+        <p class="publication-date">{{ publication.date | date: "%B %Y" }}</p>
+        <p class="publication-abstract">{{ publication.abstract }}</p>
+        {% if publication.link %}
+          <a href="{{ publication.link }}" target="_blank" rel="noopener noreferrer">Read More</a>
+        {% endif %}
+        {% if publication.pdf %}
+          <a href="{{ publication.pdf | prepend: 'site.baseurl' }}" target="_blank" rel="noopener noreferrer">PDF</a>
+        {% endif %}
+        {% if publication.code %}
+          <a href="{{ publication.code }}" target="_blank" rel="noopener noreferrer">Code</a>
+        {% endif %}
+      </div>
+    {% endfor %}
+  </section>
+</div>
